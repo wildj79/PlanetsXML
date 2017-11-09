@@ -33874,7 +33874,6 @@ Even today, Kaus Australis maintains Kaus Media as its primary customer and sour
 		<landMass>Bellaria</landMass>
 		<landMass>Lucynda</landMass>
 		<landMass>Rashatta</landMass>
-		<hpg>X</hpg>
 		<socioIndustrial>F-F-F-D-F</socioIndustrial>
 		<desc>A hellish world of continuous volcanic activity that geologists are attributing to a severe tectonic shift of unparalleled magnitude, Kaus Borealis is a world that many feel is on death‘s door. Over 300 active volcanoes have formed in the last three centuries alone, erupting with increasing intensity that now has lava flowing freely and regularly over almost ten percent of the planet‘s surface at any given time. When first discovered, Kaus Borealis was a serene world of deep green oceans, fertile soil, hardy woodlands, abundant wildlife, and blue skies. The early colonists quickly made their paradise a home and established it as an agricultural world. Although, like most terrestrial planets, Kaus Borealis had its share of seismic disturbances, scientists thought little of them until three new volcanoes explosively emerged on the west coast of the northern continent of Lucynda in 2803, each within three months of the other. As more eruptions followed, and entire towns or farming regions were swallowed up by the earth or incinerated by tons of molten rock, a gradual exodus began, which stalled in the thirty-first century when the planet grew inexplicably silent. However, by that stage so much sulfur, methane, and ash had been thrown into the atmosphere that the ozone layer was compromised, breathing was impossible without respirators, and acid rain regularly fell from dark, yellow skies. Gone were the serene oceans, fertile soil, and hardy woodlands, and most of the native wildlife had perished. Turbulent, superheated seas and barren wastes of broken rock and charcoal now dominated the landscape, but began to give way to the first signs of rejuvenation by the time Kaus Borealis became a part of by the last 31st century.
 
@@ -74837,8 +74836,7 @@ Alexandra is the 3rd planet in the Tanis system and is relatively temperate, tho
 		<subtype>8</subtype>
 		<luminosity>V</luminosity>
 		<sysPos>15</sysPos>
-		<socioIndustrial>B-C-D-D-E</socioIndustrial>
-		<hpg>F</hpg>
+		<socioIndustrial>B-C-D-D-F</socioIndustrial>
 		<desc>The Dark Nebula Waystation was created as a logistical point for the invading Clans just outside of the Inner Sphere and has traded hands multiple times between the 3050s and 3070s, with multiple attempts made to destroy the station outright. However, the immense size of the station prevented its complete destruction, but eventually all functions beyond using the Dark Nebula as a stopover and possibly storage, were lost.</desc>
 	</spacestation>
 	<planet>
@@ -75314,7 +75312,6 @@ However, the Devil's Brigade had one striking success: they found the ancient st
 		<climate>2</climate>
 		<temperature>20</temperature>
 		<percentWater>77</percentWater>
-		<hpg>X</hpg>
 		<lifeForm>6</lifeForm>
 		<socioIndustrial>F-F-F-B-B</socioIndustrial>
 		<landMass>Equatorial Zone (Camp McEvedy)</landMass>
@@ -80720,7 +80717,6 @@ Unfortunately, the planet suffered heavily during the Amaris civil war and never
 		<climate>15</climate>
 		<temperature>2</temperature>
 		<percentWater>72</percentWater>
-		<hpg>X</hpg>
 		<lifeForm>6</lifeForm>
 		<socioIndustrial>C-D-D-D-D</socioIndustrial>
 		<landMass>Ketzerheimat</landMass>

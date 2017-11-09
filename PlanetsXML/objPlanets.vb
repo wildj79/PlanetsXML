@@ -18,7 +18,6 @@ Class objPlanets
 
     Private Sub serialPlanets()
 
-
         Dim serial As New XmlSerializer(GetType(Planets))
         Dim p As New Planets
         Dim reader As XmlReader = XmlReader.Create(My.Application.Info.DirectoryPath & "\Planets\planetsTemplate.xml")
@@ -292,20 +291,20 @@ Class objPlanets
             If planet.lore() = False AndAlso planet.pressure() >= 2 Then
 
                 planet.AC = getAC(planet)
-                Console.WriteLine(planet.name() & planet.AC())
+                Console.WriteLine(planet.name() & planet.AC() & " generated")
             ElseIf planet.lore() = False AndAlso planet.pressure() < 2 Then
 
                 planet.AC = " has none / a toxic atmosphere"
-                Console.WriteLine(planet.name() & planet.AC())
+                Console.WriteLine(planet.name() & planet.AC() & " generated")
 
             ElseIf planet.lore() = True AndAlso planet.pressure() >= 2 Then
 
                 planet.AC = " has a breathable atmosphere"
-                Console.WriteLine(planet.name() & planet.AC())
+                Console.WriteLine(planet.name() & planet.AC() & " generated")
             ElseIf planet.lore() = True AndAlso planet.pressure() < 2 Then
 
                 planet.AC = " has none / a toxic atmosphere"
-                Console.WriteLine(planet.name() & planet.AC())
+                Console.WriteLine(planet.name() & planet.AC() & " generated")
             Else
 
             End If
@@ -317,7 +316,7 @@ Class objPlanets
                 Dim a As String = planet.AC()
                 Dim sf As String = getSF(planet)
                 planet.SF = sf
-                Console.WriteLine(planet.name() & planet.SF())
+                Console.WriteLine(planet.name() & planet.SF() & " generated")
                 If sf = " experiences intense volcanic activity" AndAlso a = " has a breathable atmosphere" Then
                     planet.AC = " has a tainted atmosphere"
                     Console.WriteLine(planet.name() & " volcanic activity changes atmosphere to tainted")
@@ -329,20 +328,25 @@ Class objPlanets
             End If
             'Determine a planet's population
             planet.population = getPop(planet)
-            Console.WriteLine(planet.name() & " initial population= " & String.Format("{0:n0}", planet.population()))
+            Console.WriteLine(planet.name() & " initial population= " & String.Format("{0:n0}", planet.population()) & " generated")
             planet.population = getPopMod(planet)
-            Console.WriteLine(planet.name() & " modified population= " & String.Format("{0:n0}", planet.population()))
+            Console.WriteLine(planet.name() & " modified population= " & String.Format("{0:n0}", planet.population()) & " generated")
             'Determine a planet's USILR scores and codes
             If String.IsNullOrEmpty(planet.socioIndustrial()) = True Then
 
                 planet.tech = getTech(planet)
-                Console.WriteLine(planet.name() & " tech score= " & planet.tech())
-                planet.socioIndustrial = getUSILR(planet.tech()) & "-"
-                Console.WriteLine(planet.name() & " USILR= " & planet.socioIndustrial())
+                Console.WriteLine(planet.name() & " tech score= " & planet.tech() & " generated")
                 planet.development = getDev(planet)
-                Console.WriteLine(planet.name() & " development score= " & planet.development())
-                planet.socioIndustrial = planet.socioIndustrial() & getUSILR(planet.development()) & "-"
-                Console.WriteLine(planet.name() & " USILR= " & planet.socioIndustrial())
+                Console.WriteLine(planet.name() & " development score= " & planet.development() & " generated")
+                planet.output = getOutput(planet)
+                Console.WriteLine(planet.name() & " output score= " & planet.output() & " generated")
+                planet.material = getMaterial(planet)
+                Console.WriteLine(planet.name() & " material score= " & planet.material() & " generated")
+                planet.agricultural = getAgricultural(planet)
+                Console.WriteLine(planet.name() & " agricultural score= " & planet.agricultural() & " generated")
+                planet.socioIndustrial = getUSILR(planet.tech()) & "-" & getUSILR(planet.development()) & "-" & getUSILR(planet.material()) & "-" _
+                    & getUSILR(planet.output()) & "-" & getUSILR(planet.agricultural())
+                Console.WriteLine(planet.name() & " USILR= " & planet.socioIndustrial() & " generated")
 
             ElseIf String.IsNullOrEmpty(planet.socioIndustrial()) = False Then
 
@@ -350,10 +354,22 @@ Class objPlanets
                 Dim tscore As Integer = getScore(tcode)
                 Dim dcode As String = planet.socioIndustrial().Substring(2, 1)
                 Dim dscore As Integer = getScore(dcode)
+                Dim ocode As String = planet.socioIndustrial().Substring(4, 1)
+                Dim oscore As Integer = getScore(ocode)
+                Dim mcode As String = planet.socioIndustrial().Substring(6, 1)
+                Dim mscore As Integer = getScore(mcode)
+                Dim acode As String = planet.socioIndustrial().Substring(8, 1)
+                Dim ascore As Integer = getScore(acode)
                 planet.tech = tscore
-                Console.WriteLine(planet.name() & " tech score= " & planet.tech())
+                Console.WriteLine(planet.name() & " tech score= " & planet.tech() & " generated")
                 planet.development = dscore
-                Console.WriteLine(planet.name() & " development score= " & planet.development())
+                Console.WriteLine(planet.name() & " development score= " & planet.development() & " generated")
+                planet.output = oscore
+                Console.WriteLine(planet.name() & " output score= " & planet.output() & " generated")
+                planet.material = mscore
+                Console.WriteLine(planet.name() & " material score= " & planet.material() & " generated")
+                planet.agricultural = ascore
+                Console.WriteLine(planet.name() & " agricultural score= " & planet.agricultural() & " generated")
 
             End If
             'Populate planet's description
@@ -461,6 +477,7 @@ Class objPlanets
                     & Environment.NewLine & Environment.NewLine & de
 
             End If
+
             Application.DoEvents()
 
         Next
@@ -559,7 +576,50 @@ Class objPlanets
             End If
             'Determine a spacestation's population
             spacestation.population = getPop(spacestation)
+            Console.WriteLine(spacestation.name() & " initial population= " & String.Format("{0:n0}", spacestation.population()) & " generated")
             spacestation.population = getPopMod(spacestation)
+            Console.WriteLine(spacestation.name() & " modified population= " & String.Format("{0:n0}", spacestation.population()) & " generated")
+            'Determine a spacestation's USILR scores and codes
+            If String.IsNullOrEmpty(spacestation.socioIndustrial()) = True Then
+
+                spacestation.tech = getTech(spacestation)
+                Console.WriteLine(spacestation.name() & " tech score= " & spacestation.tech() & " generated")
+                spacestation.development = getDev(spacestation)
+                Console.WriteLine(spacestation.name() & " development score= " & spacestation.development() & " generated")
+                spacestation.output = getOutput(spacestation)
+                Console.WriteLine(spacestation.name() & " output score= " & spacestation.output() & " generated")
+                spacestation.material = getMaterial(spacestation)
+                Console.WriteLine(spacestation.name() & " material score= " & spacestation.material() & " generated")
+                spacestation.agricultural = getAgricultural(spacestation)
+                Console.WriteLine(spacestation.name() & " agricultural score= " & spacestation.agricultural() & " generated")
+                spacestation.socioIndustrial = getUSILR(spacestation.tech()) & "-" & getUSILR(spacestation.development()) & "-" & getUSILR(spacestation.material()) & "-" _
+                    & getUSILR(spacestation.output()) & "-" & getUSILR(spacestation.agricultural())
+                Console.WriteLine(spacestation.name() & " USILR= " & spacestation.socioIndustrial() & " generated")
+
+            ElseIf String.IsNullOrEmpty(spacestation.socioIndustrial()) = False Then
+
+                Dim tcode As String = spacestation.socioIndustrial().Substring(0, 1)
+                Dim tscore As Integer = getScore(tcode)
+                Dim dcode As String = spacestation.socioIndustrial().Substring(2, 1)
+                Dim dscore As Integer = getScore(dcode)
+                Dim ocode As String = spacestation.socioIndustrial().Substring(4, 1)
+                Dim oscore As Integer = getScore(ocode)
+                Dim mcode As String = spacestation.socioIndustrial().Substring(6, 1)
+                Dim mscore As Integer = getScore(mcode)
+                Dim acode As String = spacestation.socioIndustrial().Substring(8, 1)
+                Dim ascore As Integer = getScore(acode)
+                spacestation.tech = tscore
+                Console.WriteLine(spacestation.name() & " tech score= " & spacestation.tech() & " generated")
+                spacestation.development = dscore
+                Console.WriteLine(spacestation.name() & " development score= " & spacestation.development() & " generated")
+                spacestation.output = oscore
+                Console.WriteLine(spacestation.name() & " output score= " & spacestation.output() & " generated")
+                spacestation.material = mscore
+                Console.WriteLine(spacestation.name() & " material score= " & spacestation.material() & " generated")
+                spacestation.agricultural = ascore
+                Console.WriteLine(spacestation.name() & " agricultural score= " & spacestation.agricultural() & " generated")
+
+            End If
             'Populate spacestation's description
             If spacestation.lore() = False Then
 
@@ -728,20 +788,20 @@ Class objPlanets
             If asteroidfield.lore() = False AndAlso asteroidfield.pressure() >= 2 Then
 
                 asteroidfield.AC = getAC(asteroidfield)
-                Console.WriteLine(asteroidfield.name() & asteroidfield.AC())
+                Console.WriteLine(asteroidfield.name() & asteroidfield.AC() & " generated")
             ElseIf asteroidfield.lore() = False AndAlso asteroidfield.pressure() < 2 Then
 
                 asteroidfield.AC = " has none / a toxic atmosphere"
-                Console.WriteLine(asteroidfield.name() & asteroidfield.AC())
+                Console.WriteLine(asteroidfield.name() & asteroidfield.AC() & " generated")
 
             ElseIf asteroidfield.lore() = True AndAlso asteroidfield.pressure() >= 2 Then
 
                 asteroidfield.AC = " has a breathable atmosphere"
-                Console.WriteLine(asteroidfield.name() & asteroidfield.AC())
+                Console.WriteLine(asteroidfield.name() & asteroidfield.AC() & " generated")
             ElseIf asteroidfield.lore() = True AndAlso asteroidfield.pressure() < 2 Then
 
                 asteroidfield.AC = " has none / a toxic atmosphere"
-                Console.WriteLine(asteroidfield.name() & asteroidfield.AC())
+                Console.WriteLine(asteroidfield.name() & asteroidfield.AC() & " generated")
             Else
 
             End If
@@ -753,7 +813,7 @@ Class objPlanets
                 Dim a As String = asteroidfield.AC()
                 Dim sf As String = getSF(asteroidfield)
                 asteroidfield.SF = sf
-                Console.WriteLine(asteroidfield.name() & asteroidfield.SF())
+                Console.WriteLine(asteroidfield.name() & asteroidfield.SF() & " generated")
                 If sf = " experiences intense volcanic activity" AndAlso a = " has a breathable atmosphere" Then
                     asteroidfield.AC = " has a tainted atmosphere"
                     Console.WriteLine(asteroidfield.name() & " volcanic activity changes atmosphere to tainted")
@@ -765,7 +825,50 @@ Class objPlanets
             End If
             'Determine a asteroidfield's population
             asteroidfield.population = getPop(asteroidfield)
+            Console.WriteLine(asteroidfield.name() & " initial population= " & String.Format("{0:n0}", asteroidfield.population()) & " generated")
             asteroidfield.population = getPopMod(asteroidfield)
+            Console.WriteLine(asteroidfield.name() & " modified population= " & String.Format("{0:n0}", asteroidfield.population()) & " generated")
+            'Determine a asteroidfield's USILR scores and codes
+            If String.IsNullOrEmpty(asteroidfield.socioIndustrial()) = True Then
+
+                asteroidfield.tech = getTech(asteroidfield)
+                Console.WriteLine(asteroidfield.name() & " tech score= " & asteroidfield.tech() & " generated")
+                asteroidfield.development = getDev(asteroidfield)
+                Console.WriteLine(asteroidfield.name() & " development score= " & asteroidfield.development() & " generated")
+                asteroidfield.output = getOutput(asteroidfield)
+                Console.WriteLine(asteroidfield.name() & " output score= " & asteroidfield.output() & " generated")
+                asteroidfield.material = getMaterial(asteroidfield)
+                Console.WriteLine(asteroidfield.name() & " material score= " & asteroidfield.material() & " generated")
+                asteroidfield.agricultural = getAgricultural(asteroidfield)
+                Console.WriteLine(asteroidfield.name() & " agricultural score= " & asteroidfield.agricultural() & " generated")
+                asteroidfield.socioIndustrial = getUSILR(asteroidfield.tech()) & "-" & getUSILR(asteroidfield.development()) & "-" & getUSILR(asteroidfield.material()) & "-" _
+                    & getUSILR(asteroidfield.output()) & "-" & getUSILR(asteroidfield.agricultural())
+                Console.WriteLine(asteroidfield.name() & " USILR= " & asteroidfield.socioIndustrial() & " generated")
+
+            ElseIf String.IsNullOrEmpty(asteroidfield.socioIndustrial()) = False Then
+
+                Dim tcode As String = asteroidfield.socioIndustrial().Substring(0, 1)
+                Dim tscore As Integer = getScore(tcode)
+                Dim dcode As String = asteroidfield.socioIndustrial().Substring(2, 1)
+                Dim dscore As Integer = getScore(dcode)
+                Dim ocode As String = asteroidfield.socioIndustrial().Substring(4, 1)
+                Dim oscore As Integer = getScore(ocode)
+                Dim mcode As String = asteroidfield.socioIndustrial().Substring(6, 1)
+                Dim mscore As Integer = getScore(mcode)
+                Dim acode As String = asteroidfield.socioIndustrial().Substring(8, 1)
+                Dim ascore As Integer = getScore(acode)
+                asteroidfield.tech = tscore
+                Console.WriteLine(asteroidfield.name() & " tech score= " & asteroidfield.tech() & " generated")
+                asteroidfield.development = dscore
+                Console.WriteLine(asteroidfield.name() & " development score= " & asteroidfield.development() & " generated")
+                asteroidfield.output = oscore
+                Console.WriteLine(asteroidfield.name() & " output score= " & asteroidfield.output() & " generated")
+                asteroidfield.material = mscore
+                Console.WriteLine(asteroidfield.name() & " material score= " & asteroidfield.material() & " generated")
+                asteroidfield.agricultural = ascore
+                Console.WriteLine(asteroidfield.name() & " agricultural score= " & asteroidfield.agricultural() & " generated")
+
+            End If
             'Populate asteroidfield's description
             If String.IsNullOrEmpty(asteroidfield.SF()) = True AndAlso asteroidfield.lore() = False Then
 
@@ -2971,62 +3074,62 @@ Class objPlanets
 
     End Function
 
-    Private Function getPopMod(body As Object) As Long
+    Private Function getPopMod(planet) As Long
 
         Dim p As Decimal
         Dim a As String
         Dim t As Integer
         Dim g As Decimal
         Dim w As Integer
-        Dim pop As Long = body.population()
+        Dim pop As Long = planet.population()
 
-        If body.pressure() Is Nothing Then
+        If planet.pressure() Is Nothing Then
 
             p = 0
 
         Else
 
-            p = body.pressure()
+            p = planet.pressure()
 
         End If
 
-        If String.IsNullOrEmpty(body.AC()) = True Then
+        If String.IsNullOrEmpty(planet.AC()) = True Then
 
             a = " has none / a toxic atmosphere"
 
         Else
 
-            a = body.AC()
+            a = planet.AC()
 
         End If
 
-        If body.temperature() Is Nothing Then
+        If planet.temperature() Is Nothing Then
 
             t = 0
 
         Else
 
-            t = body.temperature()
+            t = planet.temperature()
 
         End If
 
-        If body.gravity() Is Nothing Then
+        If planet.gravity() Is Nothing Then
 
             g = 0
 
         Else
 
-            g = body.gravity()
+            g = planet.gravity()
 
         End If
 
-        If body.percentWater() Is Nothing Then
+        If planet.percentWater() Is Nothing Then
 
             w = 0
 
         Else
 
-            w = body.percentWater()
+            w = planet.percentWater()
 
         End If
 
@@ -3082,48 +3185,47 @@ Class objPlanets
             End If
 
         Next
-        Console.WriteLine("date index <= 3025 " & index)
+
         Dim f As String = planet.factionChange(index).faction()
-        Console.WriteLine("faction (<=3025)= " & f)
         Dim d As Integer = planet.factionchange(0).date().Year
         Dim p As Long = planet.population()
         Dim clan As Boolean = checkCC(f)
         Dim tech As Integer = 3
 
         If d <= 2780 Then
-            Console.WriteLine("founded during Star League")
+
             tech = tech - 1
-            Console.WriteLine(" new tech= " & tech)
+
         End If
 
         If p >= (10 ^ 9) Then
-            Console.WriteLine("over a billion people")
+
             tech = tech - 1
-            Console.WriteLine(" new tech= " & tech)
+
         End If
 
         If clan = True Then
-            Console.WriteLine("is clan")
+
             tech = tech - 1
-            Console.WriteLine(" new tech= " & tech)
+
         End If
 
         If f = "ABN" OrElse f = "IND" OrElse f = "UND" OrElse f = "OMA" OrElse f = "MERC" OrElse f = "NONE" OrElse f = "PIR" OrElse f = "REB" OrElse f = "IE" Then
-            Console.WriteLine("does not belong to a major faction as of 3025")
+
             tech = tech + 1
-            Console.WriteLine(" new tech= " & tech)
+
         End If
 
         If p < (10 ^ 8) Then
-            Console.WriteLine("less than 100 million people")
+
             tech = tech + 1
-            Console.WriteLine(" new tech= " & tech)
+
         End If
 
         If p < (10 ^ 6) Then
-            Console.WriteLine("less than a million people")
+
             tech = tech + 1
-            Console.WriteLine(" new tech= " & tech)
+
         End If
 
         Return tech
@@ -3133,7 +3235,6 @@ Class objPlanets
     Private Function getTdesc(planet) As String
 
         Dim t As Integer = planet.tech()
-        Console.WriteLine("retrieved tech= " & t)
         Select Case t
 
             Case Is < 1
@@ -3176,46 +3277,244 @@ Class objPlanets
 
         Dim p As Long = planet.population()
         Dim tech As Integer = planet.tech()
-        Console.WriteLine("tech score= " & tech)
         Dim dev As Integer = 4
 
         If p >= (10 ^ 9) Then
-            Console.WriteLine("over a billion people")
+
             dev = dev - 1
-            Console.WriteLine("new dev score= " & dev)
+
         End If
 
         If p >= 4 * (10 ^ 9) Then
-            Console.WriteLine("over four billion people")
+
             dev = dev - 1
-            Console.WriteLine("new dev score= " & dev)
+
         End If
 
         If tech <= 2 Then
-            Console.WriteLine("tech rating of B or higher")
+
             dev = dev - 1
-            Console.WriteLine("new dev score= " & dev)
+
         End If
 
         If p <= (10 ^ 8) Then
-            Console.WriteLine("less than 100 million people")
+
             dev = dev + 1
-            Console.WriteLine("new dev score= " & dev)
+
         End If
 
         If p <= (10 ^ 6) Then
-            Console.WriteLine("less than a million people")
+
             dev = dev + 1
-            Console.WriteLine("new dev score= " & dev)
+
         End If
 
         If tech >= 5 Then
-            Console.WriteLine("tech rating of F or less")
+
             dev = dev + 1
-            Console.WriteLine("new dev score= " & dev)
+
         End If
 
         Return dev
+
+    End Function
+
+    Private Function getOutput(planet) As Integer
+
+        Dim p As Long = planet.population()
+        Dim tech As Integer = planet.tech()
+        Dim dev As Integer = planet.development()
+        Dim output As Integer = 3
+
+        If p >= (10 ^ 9) Then
+
+            output = output - 1
+
+        End If
+
+        If tech <= 1 Then
+
+            output = output - 1
+
+        End If
+
+        If dev <= 2 Then
+
+            output = output - 1
+
+        End If
+
+        If tech = 4 OrElse tech = 5 Then
+
+            output = output + 1
+
+        End If
+
+        If tech > 5 Then
+
+            output = output + 1
+
+        End If
+
+        If dev >= 4 Then
+
+            output = output + 1
+
+        End If
+
+        Return output
+
+    End Function
+
+    Private Function getMaterial(planet) As Integer
+
+        Dim tech As Integer = planet.tech()
+        Dim den As Double
+        Dim p As Long = planet.population()
+        Dim output As Integer = planet.output()
+        Dim d As Integer = planet.factionChange(0).date().year
+        Dim material As Integer = 2
+
+        If planet.density() Is Nothing Then
+
+            den = 0
+
+        Else
+
+            den = planet.density()
+
+        End If
+
+        If tech < 1 Then
+
+            material = material - 1
+
+        End If
+
+        If tech >= 1 AndAlso tech <= 3 Then
+
+            material = material - 1
+
+        End If
+
+        If den >= 5.5 Then
+
+            material = material - 1
+
+        End If
+
+        If p >= (3 * (10 ^ 9)) Then
+
+            material = material + 1
+
+        End If
+
+        If output <= 2 Then
+
+            material = material + 1
+
+        End If
+
+        If (3025 - d) >= 250 Then
+
+            material = material + 1
+
+        End If
+
+        If den <= 4 Then
+
+            material = material + 1
+
+        End If
+
+        Return material
+
+    End Function
+
+    Private Function getAgricultural(planet) As Integer
+
+        Dim tech As Integer = planet.tech()
+        Dim dev As Integer = planet.development()
+        Dim p As Long = planet.population()
+        Dim w As Integer
+        Dim ac As String
+        Dim agr As Integer = 3
+
+        If planet.percentWater() Is Nothing Then
+
+            w = 0
+
+        Else
+
+            w = planet.percentWater()
+
+        End If
+
+        If String.IsNullOrEmpty(planet.AC()) = True Then
+
+            ac = " has none / a toxic atmosphere"
+
+        Else
+
+            ac = planet.ac()
+
+        End If
+
+        If tech <= 2 Then
+
+            agr = agr - 1
+
+        End If
+
+        If tech = 3 Then
+
+            agr = agr - 1
+
+        End If
+
+        If dev <= 3 Then
+
+            agr = agr - 1
+
+        End If
+
+        If tech >= 5 Then
+
+            agr = agr + 1
+
+        End If
+
+        If p >= (10 ^ 9) Then
+
+            agr = agr + 1
+
+        End If
+
+        If p >= (5 * (10 ^ 9)) Then
+
+            agr = agr + 1
+
+        End If
+
+        If w < 50 Then
+
+            agr = agr + 1
+
+        End If
+
+        If String.Compare(ac, " has a tainted atmosphere") = 0 Then
+
+            agr = agr + 1
+
+        End If
+
+        If String.Compare(ac, " has none / a toxic atmosphere") = 0 Then
+
+            agr = agr + 2
+
+        End If
+
+        Return agr
 
     End Function
 

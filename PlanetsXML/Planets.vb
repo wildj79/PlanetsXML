@@ -197,6 +197,8 @@ Partial Public Class SpaceStation
     <XmlIgnore()>
     Public Property mass() As Decimal
     <XmlIgnore()>
+    Public Property density() As Decimal?
+    <XmlIgnore()>
     Public Property lum() As Decimal
     <XmlIgnore()>
     Public Property innerLife() As Decimal
