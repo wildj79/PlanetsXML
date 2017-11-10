@@ -386,13 +386,18 @@ Class objPlanets
                 Dim ob As String = " has a circular orbit"
                 Dim ac As String = " has a breathable atmosphere"
                 Dim po As Long = 12350000000
+                planet.tech = 0
+                Dim td As String = getTdesc(planet)
+                Dim dd As String = getDdesc(planet)
+                Dim md As String = getMdesc(planet)
+                Dim od As String = getOdesc(planet)
+                Dim ad As String = getAdesc(planet)
                 Dim de As String = planet.desc()
 
-                planet.desc = planet.name() & " has a diameter of " & String.Format("{0:n0}", (di / 1000)) & "km(" _
-                    & String.Format("{0:n2}", di / sdi) & " of standard)," & " has a density of " & String.Format("{0:n3}", dn) & "g/cm3(" _
-                    & String.Format("{0:n2}", dn / sdn) & " of standard)," & " has an escape velocity of " & String.Format("{0:n3}", (ev / 1000)) _
-                    & "km/s" & "," & ax & "," & ob & "," & ac & ", and" & " has a population of " & String.Format("{0:n0}", po) & "." _
-                    & Environment.NewLine & Environment.NewLine() & de
+                planet.desc = "<p>" & planet.name() & " has a diameter of " & String.Format("{0:n0}", (di / 1000)) & "km(" & String.Format("{0:n2}", di / sdi) & " of standard), has a density of " & String.Format("{0:n3}", dn) & "g/cm3(" & String.Format("{0:n2}", dn / sdn) & " of standard), and has an escape velocity of " & String.Format("{0:n3}", (ev / 1000)) & "km/s" & ".</p>" _
+                    & Environment.NewLine & "<p>" & planet.name() & ax & "," & ob & "," & ac & ", and has a population of " & String.Format("{0:n0}", po) & ".</p>" _
+                    & Environment.NewLine & "<p>" & planet.name() & td & " world," & dd & "," & md & "," & od & ", and" & ad & " world.</p>" _
+                    & Environment.NewLine() & Environment.NewLine & "<p>" & de & "</p>"
 
             ElseIf String.IsNullOrEmpty(planet.SF()) = True AndAlso planet.lore() = False Then
 
@@ -407,11 +412,15 @@ Class objPlanets
                 Dim ob As String = planet.orbit()
                 Dim ac As String = planet.AC()
                 Dim po As Long = planet.population()
+                Dim td As String = getTdesc(planet)
+                Dim dd As String = getDdesc(planet)
+                Dim md As String = getMdesc(planet)
+                Dim od As String = getOdesc(planet)
+                Dim ad As String = getAdesc(planet)
 
-                planet.desc = planet.name() & " has a diameter of " & String.Format("{0:n0}", (di / 1000)) & "km(" _
-                    & String.Format("{0:n2}", di / sdi) & " of standard)," & " has a density of " & String.Format("{0:n3}", dn) & "g/cm3(" _
-                    & String.Format("{0:n2}", dn / sdn) & " of standard)," & " has an escape velocity of " & String.Format("{0:n3}", (ev / 1000)) _
-                    & "km/s" & "," & ax & "," & ob & "," & ac & ", and" & " has a population of " & String.Format("{0:n0}", po) & "."
+                planet.desc = "<p>" & planet.name() & " has a diameter of " & String.Format("{0:n0}", (di / 1000)) & "km(" & String.Format("{0:n2}", di / sdi) & " of standard), has a density of " & String.Format("{0:n3}", dn) & "g/cm3(" & String.Format("{0:n2}", dn / sdn) & " of standard), and has an escape velocity of " & String.Format("{0:n3}", (ev / 1000)) & "km/s" & ".</p>" _
+                    & Environment.NewLine & "<p>" & planet.name() & ax & "," & ob & "," & ac & ", and has a population of " & String.Format("{0:n0}", po) & ".</p>" _
+                    & Environment.NewLine & "<p>" & planet.name() & td & " world," & dd & "," & md & "," & od & ", and" & ad & " world.</p>"
 
             ElseIf String.IsNullOrEmpty(planet.SF()) = True AndAlso planet.lore() = True Then
 
@@ -426,13 +435,17 @@ Class objPlanets
                 Dim ob As String = planet.orbit()
                 Dim ac As String = planet.AC()
                 Dim po As Long = planet.population()
+                Dim td As String = getTdesc(planet)
+                Dim dd As String = getDdesc(planet)
+                Dim md As String = getMdesc(planet)
+                Dim od As String = getOdesc(planet)
+                Dim ad As String = getAdesc(planet)
                 Dim de As String = planet.desc()
 
-                planet.desc = planet.name() & " has a diameter of " & String.Format("{0:n0}", (di / 1000)) & "km(" _
-                    & String.Format("{0:n2}", di / sdi) & " of standard)," & " has a density of " & String.Format("{0:n3}", dn) & "g/cm3(" _
-                    & String.Format("{0:n2}", dn / sdn) & " of standard)," & " has an escape velocity of " & String.Format("{0:n3}", (ev / 1000)) _
-                    & "km/s" & "," & ax & "," & ob & "," & ac & ", and" & " has a population of " & String.Format("{0:n0}", po) & "." _
-                    & Environment.NewLine & Environment.NewLine() & de
+                planet.desc = "<p>" & planet.name() & " has a diameter of " & String.Format("{0:n0}", (di / 1000)) & "km(" & String.Format("{0:n2}", di / sdi) & " of standard), has a density of " & String.Format("{0:n3}", dn) & "g/cm3(" & String.Format("{0:n2}", dn / sdn) & " of standard), and has an escape velocity of " & String.Format("{0:n3}", (ev / 1000)) & "km/s" & ".</p>" _
+                    & Environment.NewLine & "<p>" & planet.name() & ax & "," & ob & "," & ac & ", and has a population of " & String.Format("{0:n0}", po) & ".</p>" _
+                    & Environment.NewLine & "<p>" & planet.name() & td & " world," & dd & "," & md & "," & od & ", and" & ad & " world.</p>" _
+                    & Environment.NewLine() & Environment.NewLine & "<p>" & de & "</p>"
 
             ElseIf String.IsNullOrEmpty(planet.SF()) = False AndAlso planet.lore() = False Then
 
@@ -447,12 +460,16 @@ Class objPlanets
                 Dim ob As String = planet.orbit()
                 Dim ac As String = planet.AC()
                 Dim sf As String = planet.SF()
+                Dim td As String = getTdesc(planet)
+                Dim dd As String = getDdesc(planet)
+                Dim md As String = getMdesc(planet)
+                Dim od As String = getOdesc(planet)
+                Dim ad As String = getAdesc(planet)
                 Dim po As Long = planet.population()
 
-                planet.desc = planet.name() & " has a diameter of " & String.Format("{0:n0}", (di / 1000)) & "km(" _
-                    & String.Format("{0:n2}", di / sdi) & " of standard)," & " has a density of " & String.Format("{0:n3}", dn) & "g/cm3(" _
-                    & String.Format("{0:n2}", dn / sdn) & " of standard)," & " has an escape velocity of " & String.Format("{0:n3}", (ev / 1000)) _
-                    & "km/s" & "," & ax & "," & ob & "," & ac & "," & sf & ", and" & " has a population of " & String.Format("{0:n0}", po) & "."
+                planet.desc = "<p>" & planet.name() & " has a diameter of " & String.Format("{0:n0}", (di / 1000)) & "km(" & String.Format("{0:n2}", di / sdi) & " of standard), has a density of " & String.Format("{0:n3}", dn) & "g/cm3(" & String.Format("{0:n2}", dn / sdn) & " of standard), and has an escape velocity of " & String.Format("{0:n3}", (ev / 1000)) & "km/s" & ".</p>" _
+                    & Environment.NewLine & "<p>" & planet.name() & ax & "," & ob & "," & ac & "," & sf & ", and has a population of " & String.Format("{0:n0}", po) & ".</p>" _
+                    & Environment.NewLine & "<p>" & planet.name() & td & " world," & dd & "," & md & "," & od & ", and" & ad & " world.</p>"
 
             Else
 
@@ -468,13 +485,17 @@ Class objPlanets
                 Dim ac As String = planet.AC()
                 Dim sf As String = planet.SF()
                 Dim po As Long = planet.population()
+                Dim td As String = getTdesc(planet)
+                Dim dd As String = getDdesc(planet)
+                Dim md As String = getMdesc(planet)
+                Dim od As String = getOdesc(planet)
+                Dim ad As String = getAdesc(planet)
                 Dim de As String = planet.desc()
 
-                planet.desc = planet.name() & " has a diameter of " & String.Format("{0:n0}", (di / 1000)) & "km(" _
-                    & String.Format("{0:n2}", di / sdi) & " of standard)," & " has a density of " & String.Format("{0:n3}", dn) & "g/cm3(" _
-                    & String.Format("{0:n2}", dn / sdn) & " of standard)," & " has an escape velocity of " & String.Format("{0:n3}", (ev / 1000)) _
-                    & "km/s" & "," & ax & "," & ob & "," & ac & "," & sf & ", and" & " has a population of " & String.Format("{0:n0}", po) & "." _
-                    & Environment.NewLine & Environment.NewLine & de
+                planet.desc = "<p>" & planet.name() & " has a diameter of " & String.Format("{0:n0}", (di / 1000)) & "km(" & String.Format("{0:n2}", di / sdi) & " of standard), has a density of " & String.Format("{0:n3}", dn) & "g/cm3(" & String.Format("{0:n2}", dn / sdn) & " of standard), and has an escape velocity of " & String.Format("{0:n3}", (ev / 1000)) & "km/s" & ".</p>" _
+                    & Environment.NewLine & "<p>" & planet.name() & ax & "," & ob & "," & ac & "," & sf & ", and has a population of " & String.Format("{0:n0}", po) & ".</p>" _
+                    & Environment.NewLine & "<p>" & planet.name() & td & " world," & dd & "," & md & "," & od & ", and" & ad & " world.</p>" _
+                    & Environment.NewLine & Environment.NewLine & "<p>" & de & "</p>"
 
             End If
 
@@ -624,16 +645,24 @@ Class objPlanets
             If spacestation.lore() = False Then
 
                 Dim po As Long = spacestation.population()
+                Dim td As String = getTdesc(spacestation)
+                Dim dd As String = getDdesc(spacestation)
+                Dim md As String = getMdesc(spacestation)
+                Dim od As String = getOdesc(spacestation)
 
-                spacestation.desc = spacestation.name() & " has a population of " & String.Format("{0:n0}", po) & "."
+                spacestation.desc = "<p>" & spacestation.name() & " has a population of " & String.Format("{0:n0}", po) & "," & td & " space station," & dd & "," & md & ", and" & od & ".</p>"
 
             ElseIf spacestation.lore() = True Then
 
                 Dim po As Long = spacestation.population()
+                Dim td As String = getTdesc(spacestation)
+                Dim dd As String = getDdesc(spacestation)
+                Dim md As String = getMdesc(spacestation)
+                Dim od As String = getOdesc(spacestation)
                 Dim de As String = spacestation.desc()
 
-                spacestation.desc = spacestation.name() & " has a population of " & String.Format("{0:n0}", po) & "." & Environment.NewLine _
-                    & Environment.NewLine() & de
+                spacestation.desc = "<p>" & spacestation.name() & " has a population of " & String.Format("{0:n0}", po) & "," & td & " space station," & dd & "," & md & ", and" & od & ".</p>" _
+                    & Environment.NewLine & Environment.NewLine & "<p>" & de & "</p>"
 
             Else
 
@@ -872,37 +901,49 @@ Class objPlanets
             'Populate asteroidfield's description
             If String.IsNullOrEmpty(asteroidfield.SF()) = True AndAlso asteroidfield.lore() = False Then
 
-                Dim ac As String = asteroidfield.AC()
                 Dim po As Long = asteroidfield.population()
+                Dim td As String = getTdesc(asteroidfield)
+                Dim dd As String = getDdesc(asteroidfield)
+                Dim md As String = getMdesc(asteroidfield)
+                Dim od As String = getOdesc(asteroidfield)
 
-                asteroidfield.desc = asteroidfield.name() & ac & " and" & " has a population of " & String.Format("{0:n0}", po) & "."
+                asteroidfield.desc = "<p>" & asteroidfield.name() & " has a population of " & String.Format("{0:n0}", po) & "," & td & " asteroid field," & dd & "," & md & ", and" & od & ".</p>"
 
             ElseIf String.IsNullOrEmpty(asteroidfield.SF()) = True AndAlso asteroidfield.lore() = True Then
 
-                Dim ac As String = asteroidfield.AC()
                 Dim po As Long = asteroidfield.population()
+                Dim td As String = getTdesc(asteroidfield)
+                Dim dd As String = getDdesc(asteroidfield)
+                Dim md As String = getMdesc(asteroidfield)
+                Dim od As String = getOdesc(asteroidfield)
                 Dim de As String = asteroidfield.desc()
 
-                asteroidfield.desc = asteroidfield.name() & ac & " and" & " has a population of " & String.Format("{0:n0}", po) & "." _
-                    & Environment.NewLine & Environment.NewLine & de
+                asteroidfield.desc = "<p>" & asteroidfield.name() & " has a population of " & String.Format("{0:n0}", po) & "," & td & " asteroid field," & dd & "," & md & ", and" & od & ".</p>" _
+                    & Environment.NewLine & Environment.NewLine & "<p>" & de & "</p>"
 
             ElseIf String.IsNullOrEmpty(asteroidfield.SF()) = False AndAlso asteroidfield.lore() = False Then
 
-                Dim ac As String = asteroidfield.AC()
                 Dim sf As String = asteroidfield.SF()
                 Dim po As Long = asteroidfield.population()
+                Dim td As String = getTdesc(asteroidfield)
+                Dim dd As String = getDdesc(asteroidfield)
+                Dim md As String = getMdesc(asteroidfield)
+                Dim od As String = getOdesc(asteroidfield)
 
-                asteroidfield.desc = asteroidfield.name() & ac & "," & sf & ", and" & " has a population of " & String.Format("{0:n0}", po) & "."
+                asteroidfield.desc = "<p>" & asteroidfield.name() & " has a population of " & String.Format("{0:n0}", po) & "," & sf & "," & td & " asteroid field," & dd & "," & md & ", and" & od & ".</p>"
 
             Else
 
-                Dim ac As String = asteroidfield.AC()
                 Dim sf As String = asteroidfield.SF()
                 Dim po As Long = asteroidfield.population()
+                Dim td As String = getTdesc(asteroidfield)
+                Dim dd As String = getDdesc(asteroidfield)
+                Dim md As String = getMdesc(asteroidfield)
+                Dim od As String = getOdesc(asteroidfield)
                 Dim de As String = asteroidfield.desc()
 
-                asteroidfield.desc = asteroidfield.name() & ac & "," & sf & ", and" & " has a population of " & String.Format("{0:n0}", po) & "." _
-                    & Environment.NewLine & Environment.NewLine & de
+                asteroidfield.desc = "<p>" & asteroidfield.name() & " has a population of " & String.Format("{0:n0}", po) & "," & sf & "," & td & " asteroid field," & dd & "," & md & ", and" & od & ".</p>" _
+                    & Environment.NewLine & Environment.NewLine & "<p>" & de & "</p>"
 
             End If
             Application.DoEvents()
@@ -1780,7 +1821,7 @@ Class objPlanets
 
             Case 7 To 12
 
-                Return " axial tilt does not effect or create seasons"
+                Return " has minimal or no axial tilt"
 
             Case Else
 
@@ -3239,31 +3280,31 @@ Class objPlanets
 
             Case Is < 1
 
-                Return " is an ultra-tech world"
+                Return " is an ultra-tech"
 
             Case 1
 
-                Return " is a high-tech world"
+                Return " is a high-tech"
 
             Case 2
 
-                Return " is an advanced world"
+                Return " is an advanced"
 
             Case 3
 
-                Return " is a moderately advanced world"
+                Return " is a moderately advanced"
 
             Case 4
 
-                Return " is a lower-tech world"
+                Return " is a lower-tech"
 
             Case 5
 
-                Return " is a primitive world"
+                Return " is a primitive"
 
             Case Is > 5
 
-                Return " is a technologically regressed world"
+                Return " is a technologically regressed"
 
             Case Else
 
@@ -3319,6 +3360,39 @@ Class objPlanets
 
     End Function
 
+    Private Function getDdesc(planet) As String
+
+        Dim d As Integer = planet.development()
+        Select Case d
+
+            Case Is <= 1
+
+                Return " is heavily industrialized"
+
+            Case 2
+
+                Return " is moderately industrialized"
+
+            Case 3
+
+                Return " has basic heavy industry"
+
+            Case 4
+
+                Return " has low industrialization"
+
+            Case Is >= 5
+
+                Return " has no industrialization"
+
+            Case Else
+
+                Return " Error"
+
+        End Select
+
+    End Function
+
     Private Function getOutput(planet) As Integer
 
         Dim p As Long = planet.population()
@@ -3363,6 +3437,39 @@ Class objPlanets
         End If
 
         Return output
+
+    End Function
+
+    Private Function getOdesc(planet) As String
+
+        Dim o As Integer = planet.output()
+        Select Case o
+
+            Case <= 1
+
+                Return " has high industrial output"
+
+            Case 2
+
+                Return " has good industrial output"
+
+            Case 3
+
+                Return " has limited industrial output"
+
+            Case 4
+
+                Return " has negligible industrial output"
+
+            Case >= 5
+
+                Return " has no industrial output"
+
+            Case Else
+
+                Return " Error"
+
+        End Select
 
     End Function
 
@@ -3428,6 +3535,39 @@ Class objPlanets
         End If
 
         Return material
+
+    End Function
+
+    Private Function getMdesc(planet) As String
+
+        Dim m As Integer = planet.material()
+        Select Case m
+
+            Case <= 1
+
+                Return " is fully self-sufficient on materials"
+
+            Case 2
+
+                Return " is mostly self-sufficient on materials"
+
+            Case 3
+
+                Return " is self-sustaining on materials"
+
+            Case 4
+
+                Return " is dependent on imported materials"
+
+            Case >= 5
+
+                Return " is heavily dependent on imported materials"
+
+            Case Else
+
+                Return " Error"
+
+        End Select
 
     End Function
 
@@ -3515,6 +3655,39 @@ Class objPlanets
         End If
 
         Return agr
+
+    End Function
+
+    Private Function getAdesc(planet) As String
+
+        Dim a As Integer = planet.agricultural()
+        Select Case a
+
+            Case <= 1
+
+                Return " is an agricultural breadbasket"
+
+            Case 2
+
+                Return " is an agriculturally abundant"
+
+            Case 3
+
+                Return " is a modest agriculture"
+
+            Case 4
+
+                Return " is a poor agriculture"
+
+            Case >= 5
+
+                Return " is an agriculturally barren"
+
+            Case Else
+
+                Return " Error"
+
+        End Select
 
     End Function
 

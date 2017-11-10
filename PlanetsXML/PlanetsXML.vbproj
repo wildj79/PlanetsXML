@@ -123,8 +123,6 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="App.config" />
-    <None Include="Planets\planets.zip" />
-    <None Include="Planets\planetsTemplate.zip" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Primary Stats\" />
@@ -133,9 +131,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="PlanetsXML.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="planets.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Primary Stats\high.txt">
@@ -154,9 +149,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Primary Stats\very high.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Planets\planets.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Planets\planetsTemplate.xml">
